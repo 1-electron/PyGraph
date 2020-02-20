@@ -1,5 +1,4 @@
 import ast
-from hello2 import c
 
 def a():
     x = 2
@@ -8,8 +7,11 @@ def a():
 def b():
     return 2 + c()
 
+def c():
+    return 3
+
 def d():
     # useless function and should not be copied for execution
     return 4
 
-y = 2
+y = a()
