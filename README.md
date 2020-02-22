@@ -1,7 +1,7 @@
 # PieCarve
-piecarve extracts a call graph from python source code. 
+piecarve extracts a call graph from python source. 
 
-constructing call graphs in python is surprisingly difficult. python is way too dynamic to be able to generate a call graph without executing code, so this is the next best thing.
+constructing call graphs in python is surprisingly difficult - python is way too dynamic to be able to generate a call graph without actually executing code - so this is the next best thing.
 
 ## example
 we have the following code:
