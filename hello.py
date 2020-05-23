@@ -1,7 +1,9 @@
 import ast
+import numpy as np
 
 def a():
-    x = 2
+    z = 0
+    x = np.random.normal()
     return c() + b() + x
 
 def b():

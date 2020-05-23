@@ -1,5 +1,7 @@
 import ast
 import astor  # https://stackoverflow.com/questions/36022935/rewriting-code-with-ast-python
+import io
+from contextlib import redirect_stdout
 
 class FunctionCallVisitor(ast.NodeVisitor):
     """
@@ -36,6 +38,7 @@ def name2idx(target_name, tree):
 def fetch(start_name, tree):
     """
     start_name is a str, eg "a".
+    
     tree is an ast tree object, usually constructed with `tree = ast.parse(source)`.
     
     starting from start_name, fetch will find all callables and copies source.
@@ -56,10 +59,11 @@ def fetch(start_name, tree):
         idx = name2idx(name, tree)  
 
         # with the index, retrieve correspoding node from ast tree
-        curr = tree.body[idx]  
+        curr = tree.body[idx]
+        print(curr.name)  # print function name
 
-        # copy its source code before moving on
-        print(astor.to_source(curr))  
+        # print its source code before moving on
+        # print(astor.to_source(curr))
 
         # now find all callables for current function
         callable_name = find_callables(curr)  
@@ -70,8 +74,7 @@ def fetch(start_name, tree):
                 stack.append(name)
                 
                 
-import io
-from contextlib import redirect_stdout
+
 
 def find_callables(curr):
     """
